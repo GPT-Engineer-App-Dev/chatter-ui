@@ -5,8 +5,12 @@ import { FaUser, FaTwitter } from 'react-icons/fa';
 const Index = () => {
   const [tweet, setTweet] = useState('');
   const handleTweet = () => {
-      console.log("Tweet posted:", tweet);
-      setTweet('');  // Clear the input after posting
+      if (tweet.trim() !== '') {
+          console.log("Tweet posted:", tweet);
+          setTweet('');  // Clear the input after posting
+      } else {
+          console.log("No content to tweet");
+      }
   };
 
   return (
@@ -22,7 +26,7 @@ const Index = () => {
         <HStack width="100%">
           <Avatar name="User" src="" />
           <Input placeholder="What's happening?" value={tweet} onChange={(e) => setTweet(e.target.value)} />
-          <Button colorScheme="twitter" onClick={handleTweet}>Tweet</Button>
+          <Button colorScheme="twitter" onClick={handleTweet} isDisabled={tweet.trim() === ''}>Tweet</Button>
         </HStack>
         <Box width="100%" p={5} boxShadow="base" borderRadius="lg">
           <HStack spacing={3}>
