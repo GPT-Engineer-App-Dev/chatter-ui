@@ -4,9 +4,10 @@ import { FaUser, FaTwitter } from 'react-icons/fa';
 
 const Index = () => {
   const [tweet, setTweet] = useState('');
+  const [tweets, setTweets] = useState([]);
   const handleTweet = () => {
       if (tweet.trim() !== '') {
-          console.log("Tweet posted:", tweet);
+          setTweets([...tweets, { id: Date.now(), content: tweet }]);
           setTweet('');  // Clear the input after posting
       } else {
           console.log("No content to tweet");
@@ -28,15 +29,17 @@ const Index = () => {
           <Input placeholder="What's happening?" value={tweet} onChange={(e) => setTweet(e.target.value)} />
           <Button colorScheme="twitter" onClick={handleTweet} isDisabled={tweet.trim() === ''}>Tweet</Button>
         </HStack>
-        <Box width="100%" p={5} boxShadow="base" borderRadius="lg">
-          <HStack spacing={3}>
-            <Avatar name="John Doe" src="" />
-            <Text fontWeight="bold">John Doe</Text>
-          </HStack>
-          <Text mt={2}>
-            Just setting up my MiniTwitter! #firstTweet
-          </Text>
-        </Box>
+        {tweets.map(tweet => (
+            <Box key={tweet.id} width="100%" p={5} boxShadow="base" borderRadius="lg">
+                <HStack spacing={3}>
+                    <Avatar name="User" src="" />
+                    <Text fontWeight="bold">User</Text>
+                </HStack>
+                <Text mt={2}>
+                    {tweet.content}
+                </Text>
+            </Box>
+        ))}
       </VStack>
     </Box>
   );
