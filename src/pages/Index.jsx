@@ -1,10 +1,12 @@
+import { useState } from 'react';
 import { Box, Flex, Input, Button, Text, VStack, HStack, Avatar } from '@chakra-ui/react';
 import { FaUser, FaTwitter } from 'react-icons/fa';
 
 const Index = () => {
+  const [tweet, setTweet] = useState('');
   const handleTweet = () => {
-      console.log("Tweet posted!");
-      // Here you would typically handle the state update and API call to post the tweet
+      console.log("Tweet posted:", tweet);
+      setTweet('');  // Clear the input after posting
   };
 
   return (
@@ -19,7 +21,7 @@ const Index = () => {
       <VStack spacing={4}>
         <HStack width="100%">
           <Avatar name="User" src="" />
-          <Input placeholder="What's happening?" />
+          <Input placeholder="What's happening?" value={tweet} onChange={(e) => setTweet(e.target.value)} />
           <Button colorScheme="twitter" onClick={handleTweet}>Tweet</Button>
         </HStack>
         <Box width="100%" p={5} boxShadow="base" borderRadius="lg">
