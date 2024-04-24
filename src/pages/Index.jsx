@@ -2,6 +2,11 @@ import { Box, Flex, Input, Button, Text, VStack, HStack, Avatar } from '@chakra-
 import { FaUser, FaTwitter } from 'react-icons/fa';
 
 const Index = () => {
+  const handleTweet = () => {
+      console.log("Tweet posted!");
+      // Here you would typically handle the state update and API call to post the tweet
+  };
+
   return (
     <Box p={5}>
       <Flex justifyContent="space-between" alignItems="center" mb={5}>
@@ -15,7 +20,7 @@ const Index = () => {
         <HStack width="100%">
           <Avatar name="User" src="" />
           <Input placeholder="What's happening?" />
-          <Button colorScheme="twitter">Tweet</Button>
+          <Button colorScheme="twitter" onClick={handleTweet}>Tweet</Button>
         </HStack>
         <Box width="100%" p={5} boxShadow="base" borderRadius="lg">
           <HStack spacing={3}>
